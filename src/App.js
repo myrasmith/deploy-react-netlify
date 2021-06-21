@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
