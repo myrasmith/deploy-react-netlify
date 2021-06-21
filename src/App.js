@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import axios from "axios";
+
+const apiURL = () => {
+  return window.location.hostname === "localhost"
+    ? "http://localhost:3003"
+    : "https://pure-tundra-33705.herokuapp.com";
+};
+
+const API = apiURL();
 
 function App() {
+  useEffect(() => {
+    axios.get(`${API}`).then((response) => {
+      console.log(response.data);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <h1>Hello World!</h1>
+        <Route path="/hidden">
+          <h2>You've found a hidden route!</h2>
+        </Route>
+      </div>
+    </BrowserRouter>
   );
 }
 
